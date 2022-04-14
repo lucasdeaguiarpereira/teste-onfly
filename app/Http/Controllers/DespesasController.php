@@ -14,18 +14,9 @@ class DespesasController extends Controller
      */
     public function index()
     {
-        //
+        return Despesas::get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +26,7 @@ class DespesasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Despesas::create($request->all());
     }
 
     /**
@@ -46,19 +37,9 @@ class DespesasController extends Controller
      */
     public function show(Despesas $despesas)
     {
-        //
+        return Despesas::findOrFail($despesas->id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Despesas  $despesas
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Despesas $despesas)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -70,6 +51,8 @@ class DespesasController extends Controller
     public function update(Request $request, Despesas $despesas)
     {
         //
+        $despesa = Precos::findOrFail($despesas->id);
+        $despesa->update($request->all());
     }
 
     /**
@@ -80,6 +63,7 @@ class DespesasController extends Controller
      */
     public function destroy(Despesas $despesas)
     {
-        //
+        $despesa = Despesas::findOrFail($despesas->id);
+        $despesa->delete();
     }
 }
